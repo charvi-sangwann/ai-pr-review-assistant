@@ -1,0 +1,223 @@
+{
+  "benchmark": "AI PR Review Assistant V1.2",
+  "version": "1.0",
+  "description": "Ground-truth evaluation set for evaluating AI-generated pull request reviews.",
+
+  "cases": [
+    {
+      "id": "SEC-01",
+      "category": "security",
+      "scenario": "SQL injection through string concatenation",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "SEC-02",
+      "category": "security",
+      "scenario": "Command injection through user-controlled input",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "SEC-03",
+      "category": "security",
+      "scenario": "Hardcoded API key or secret",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "SEC-04",
+      "category": "security",
+      "scenario": "Path traversal through user-controlled file path",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "SEC-05",
+      "category": "security",
+      "scenario": "Cross-site scripting through unsanitized user input",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "SEC-06",
+      "category": "security",
+      "scenario": "Missing authentication or authorization on admin endpoint",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "SEC-07",
+      "category": "security",
+      "scenario": "Weak password storage using an inappropriate hashing method",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "SEC-08",
+      "category": "security",
+      "scenario": "Server-side request forgery through user-controlled URL",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "SEC-09",
+      "category": "security",
+      "scenario": "Sensitive token or password written to application logs",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+    {
+      "id": "SEC-10",
+      "category": "security",
+      "scenario": "Unsafe file upload without file type validation",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+
+    {
+      "id": "COR-01",
+      "category": "correctness",
+      "scenario": "Array loop uses an incorrect boundary condition",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+    {
+      "id": "COR-02",
+      "category": "correctness",
+      "scenario": "Function returns before processing all required items",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "COR-03",
+      "category": "correctness",
+      "scenario": "Incorrect comparison causes unexpected program behavior",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+    {
+      "id": "COR-04",
+      "category": "correctness",
+      "scenario": "Division by zero is not handled",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "COR-05",
+      "category": "correctness",
+      "scenario": "Missing await causes incorrect asynchronous behavior",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+    {
+      "id": "COR-06",
+      "category": "correctness",
+      "scenario": "Error is caught but the endpoint incorrectly reports success",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+
+    {
+      "id": "PERF-01",
+      "category": "performance",
+      "scenario": "Nested loops create unnecessary O(n^2) complexity",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+    {
+      "id": "PERF-02",
+      "category": "performance",
+      "scenario": "Database query executed repeatedly inside a loop",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "PERF-03",
+      "category": "performance",
+      "scenario": "Expensive computation is repeated unnecessarily",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+    {
+      "id": "PERF-04",
+      "category": "performance",
+      "scenario": "Large dataset is unnecessarily loaded into memory",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+
+    {
+      "id": "MAIN-01",
+      "category": "maintainability",
+      "scenario": "Business logic is unnecessarily duplicated",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+    {
+      "id": "MAIN-02",
+      "category": "maintainability",
+      "scenario": "Large function mixes validation, database, business and response logic",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+    {
+      "id": "MAIN-03",
+      "category": "maintainability",
+      "scenario": "Cryptic variable and function names reduce readability",
+      "expectedIssue": true,
+      "expectedSeverity": "low"
+    },
+
+    {
+      "id": "TEST-01",
+      "category": "testing",
+      "scenario": "New API endpoint is added without tests",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+    {
+      "id": "TEST-02",
+      "category": "testing",
+      "scenario": "Authentication logic changes without tests for failure cases",
+      "expectedIssue": true,
+      "expectedSeverity": "high"
+    },
+    {
+      "id": "TEST-03",
+      "category": "testing",
+      "scenario": "New edge-case behavior is introduced without a corresponding test",
+      "expectedIssue": true,
+      "expectedSeverity": "medium"
+    },
+
+    {
+      "id": "CLEAN-01",
+      "category": null,
+      "scenario": "Variable is renamed without changing behavior",
+      "expectedIssue": false,
+      "expectedSeverity": null
+    },
+    {
+      "id": "CLEAN-02",
+      "category": null,
+      "scenario": "SQL query is changed to use parameterized input",
+      "expectedIssue": false,
+      "expectedSeverity": null
+    },
+    {
+      "id": "CLEAN-03",
+      "category": null,
+      "scenario": "Unit tests are added for existing functionality",
+      "expectedIssue": false,
+      "expectedSeverity": null
+    },
+    {
+      "id": "CLEAN-04",
+      "category": null,
+      "scenario": "Repeated magic value is replaced with a named constant",
+      "expectedIssue": false,
+      "expectedSeverity": null
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+diff --git a/routes/users.js b/routes/users.js
+index 1111111..2222222 100644
+--- a/routes/users.js
++++ b/routes/users.js
+@@ -1,11 +1,17 @@
+ const express = require("express");
+ const router = express.Router();
+ const { query } = require("../db");
+ const { requireAuth } = require("../utils/auth");
+ 
+ router.get("/users/:id", requireAuth, async (req, res) => {
+   const result = await query("SELECT * FROM users WHERE id = $1", [req.params.id]);
+   res.json(result.rows[0] || null);
+ });
+ 
++router.get("/users/search", async (req, res) => {
++  const name = req.query.name;
++  const sql = "SELECT * FROM users WHERE name = '" + name + "'";
++  const result = await query(sql);
++  res.json(result.rows);
++});
++
+ module.exports = router;
