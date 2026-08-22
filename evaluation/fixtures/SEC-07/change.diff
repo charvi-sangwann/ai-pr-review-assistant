@@ -1,0 +1,15 @@
+diff --git a/auth/password.js b/auth/password.js
+index 1111111..2222222 100644
+--- a/auth/password.js
++++ b/auth/password.js
+@@ -1,7 +1,7 @@
+-const bcrypt = require("bcrypt");
++const crypto = require("crypto");
+ 
+-async function hashPassword(password) {
+-  return bcrypt.hash(password, 10);
++function hashPassword(password) {
++  return crypto.createHash("md5").update(password).digest("hex");
+ }
+ 
+ module.exports = { hashPassword };

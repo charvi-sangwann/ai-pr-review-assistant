@@ -1,0 +1,10 @@
+diff --git a/utils/user.js b/utils/user.js
+index 1111111..2222222 100644
+--- a/utils/user.js
++++ b/utils/user.js
+@@ -1,3 +1,3 @@
+-function getUserName(user) {
+-  return user.name;
++function g(u) {
++  return u.n;
+ }

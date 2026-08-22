@@ -1,0 +1,13 @@
+diff --git a/utils/command.js b/utils/command.js
+index 1111111..2222222 100644
+--- a/utils/command.js
++++ b/utils/command.js
+@@ -1,7 +1,7 @@
+ const { exec } = require("child_process");
+ 
+ function runCommand(input, callback) {
+-  exec("ls", (error, stdout, stderr) => {
++  exec("ls " + input, (error, stdout, stderr) => {
+     callback(error, stdout, stderr);
+   });
+ }

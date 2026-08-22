@@ -1,0 +1,14 @@
+diff --git a/routes/users.js b/routes/users.js
+index 1111111..2222222 100644
+--- a/routes/users.js
++++ b/routes/users.js
+@@ -3,8 +3,7 @@
+ 
+ router.get("/users/:id", async (req, res) => {
+   const user = await db.query(
+-    "SELECT * FROM users WHERE id = $1",
+-    [req.params.id]
++    "SELECT * FROM users WHERE id = " + req.params.id
+   );
+   res.json(user);
+ });

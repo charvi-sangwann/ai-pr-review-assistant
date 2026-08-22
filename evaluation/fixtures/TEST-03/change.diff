@@ -1,0 +1,13 @@
+diff --git a/utils/discount.js b/utils/discount.js
+index 1111111..2222222 100644
+--- a/utils/discount.js
++++ b/utils/discount.js
+@@ -1,4 +1,8 @@
+ function discount(price, percentage) {
++  if (percentage > 1) {
++    return price;
++  }
++
+   return price * (1 - percentage);
+ }
+ 

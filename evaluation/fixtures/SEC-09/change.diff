@@ -1,0 +1,10 @@
+diff --git a/routes/login.js b/routes/login.js
+index 1111111..2222222 100644
+--- a/routes/login.js
++++ b/routes/login.js
+@@ -1,4 +1,4 @@
+ router.post("/login", (req, res) => {
+-  console.log("Login attempt");
++  console.log("Login attempt", req.body.username, req.body.password);
+   res.json({ success: true });
+ });

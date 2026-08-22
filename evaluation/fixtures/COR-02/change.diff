@@ -1,0 +1,11 @@
+diff --git a/services/process.js b/services/process.js
+index 1111111..2222222 100644
+--- a/services/process.js
++++ b/services/process.js
+@@ -1,5 +1,6 @@
+ function processUsers(users) {
+   for (const user of users) {
+     saveUser(user);
++    return true;
+   }
+ }

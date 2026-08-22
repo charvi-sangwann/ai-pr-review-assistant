@@ -1,0 +1,11 @@
+diff --git a/auth/check.js b/auth/check.js
+index 1111111..2222222 100644
+--- a/auth/check.js
++++ b/auth/check.js
+@@ -1,5 +1,5 @@
+ function isAdmin(role) {
+-  return role === "admin";
++  return role = "admin";
+ }
+ 
+ module.exports = { isAdmin };

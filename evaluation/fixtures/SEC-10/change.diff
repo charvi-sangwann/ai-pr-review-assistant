@@ -1,0 +1,10 @@
+diff --git a/routes/upload.js b/routes/upload.js
+index 1111111..2222222 100644
+--- a/routes/upload.js
++++ b/routes/upload.js
+@@ -1,3 +1,5 @@
+ router.post("/upload", upload.single("file"), (req, res) => {
++  const file = req.file;
++  fs.writeFileSync("/uploads/" + file.originalname, file.buffer);
+   res.json({ uploaded: true });
+ });

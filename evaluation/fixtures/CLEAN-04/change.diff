@@ -1,0 +1,16 @@
+diff --git a/utils/config.js b/utils/config.js
+index 1111111..2222222 100644
+--- a/utils/config.js
++++ b/utils/config.js
+@@ -1,7 +1,9 @@
++const PORT = 3000;
++
+ function connect() {
+-  return createConnection(3000);
++  return createConnection(PORT);
+ }
+ 
+ function startServer() {
+-  return createServer(3000);
++  return createServer(PORT);
+ }

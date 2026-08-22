@@ -1,0 +1,13 @@
+diff --git a/utils/sum.js b/utils/sum.js
+index 1111111..2222222 100644
+--- a/utils/sum.js
++++ b/utils/sum.js
+@@ -1,7 +1,7 @@
+ function sum(values) {
+   let total = 0;
+ 
+-  for (let i = 0; i < values.length; i++) {
++  for (let i = 0; i <= values.length; i++) {
+     total += values[i];
+   }
+ 

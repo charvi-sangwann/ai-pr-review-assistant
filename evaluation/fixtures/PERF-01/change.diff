@@ -1,0 +1,21 @@
+diff --git a/utils/search.js b/utils/search.js
+index 1111111..2222222 100644
+--- a/utils/search.js
++++ b/utils/search.js
+@@ -1,5 +1,15 @@
+ function findMatches(items, targets) {
+-  return items.filter(item => targets.includes(item));
++  const matches = [];
++
++  for (const item of items) {
++    for (const target of targets) {
++      if (item === target) {
++        matches.push(item);
++      }
++    }
++  }
++
++  return matches;
+ }
+ 
+ module.exports = { findMatches };

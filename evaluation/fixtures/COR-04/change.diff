@@ -1,0 +1,13 @@
+diff --git a/math/divide.js b/math/divide.js
+index 1111111..2222222 100644
+--- a/math/divide.js
++++ b/math/divide.js
+@@ -1,8 +1,4 @@
+ function divide(a, b) {
+-  if (b === 0) {
+-    return null;
+-  }
+-
+   return a / b;
+ }
+ 

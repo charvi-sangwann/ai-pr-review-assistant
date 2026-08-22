@@ -1,0 +1,14 @@
+diff --git a/utils/files.js b/utils/files.js
+index 1111111..2222222 100644
+--- a/utils/files.js
++++ b/utils/files.js
+@@ -1,8 +1,7 @@
+ const fs = require("fs");
+ 
+ function readFile(name) {
+-  const safeName = name.replace(/\.\./g, "");
+-  return fs.readFileSync("/app/uploads/" + safeName, "utf8");
++  return fs.readFileSync("/app/uploads/" + name, "utf8");
+ }
+ 
+ module.exports = { readFile };

@@ -1,0 +1,10 @@
+diff --git a/routes/admin.js b/routes/admin.js
+index 1111111..2222222 100644
+--- a/routes/admin.js
++++ b/routes/admin.js
+@@ -1,4 +1,4 @@
+-router.get("/admin/users", requireAdmin, async (req, res) => {
++router.get("/admin/users", async (req, res) => {
+   const users = await getAllUsers();
+   res.json(users);
+ });

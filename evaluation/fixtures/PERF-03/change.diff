@@ -1,0 +1,15 @@
+diff --git a/utils/report.js b/utils/report.js
+index 1111111..2222222 100644
+--- a/utils/report.js
++++ b/utils/report.js
+@@ -1,4 +1,9 @@
+ function createReport(items) {
+-  const total = calculateTotal(items);
++  let total = 0;
++
++  for (const item of items) {
++    total += calculateTotal(items);
++  }
++
+   return { total };
+ }

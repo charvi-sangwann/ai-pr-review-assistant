@@ -1,0 +1,16 @@
+diff --git a/services/users.js b/services/users.js
+index 1111111..2222222 100644
+--- a/services/users.js
++++ b/services/users.js
+@@ -1,3 +1,10 @@
+ async function loadUsers(ids) {
+-  return db.query("SELECT * FROM users");
++  const users = [];
++
++  for (const id of ids) {
++    const user = await db.query("SELECT * FROM users WHERE id = $1", [id]);
++    users.push(user);
++  }
++
++  return users;
+ }
