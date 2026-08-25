@@ -1,490 +1,65 @@
 {
   "benchmark": "AI PR Review Assistant V1.2",
   "version": "1.0",
-  "generatedAt": "2026-08-22T14:29:34.270Z",
+  "generatedAt": "2026-08-25T12:04:48.911Z",
+  "selectedCases": [
+    "COR-04"
+  ],
   "summary": {
-    "totalCases": 30,
-    "completedCases": 30,
-    "passedCases": 26,
-    "failedCases": 4,
+    "totalCases": 1,
+    "completedCases": 1,
+    "passedCases": 1,
+    "failedCases": 0,
     "skippedCases": 0,
-    "errorCases": 0
+    "errorCases": 0,
+    "truePositives": 1,
+    "falsePositives": 0,
+    "trueNegatives": 0,
+    "falseNegatives": 0,
+    "detectionAccuracy": 100,
+    "precision": 100,
+    "recall": 100,
+    "f1Score": 100,
+    "falsePositiveRate": 0,
+    "severityAccuracy": 100,
+    "categoryAccuracy": 100,
+    "severityCases": 1,
+    "categoryCases": 1,
+    "byCategory": {
+      "correctness": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "accuracy": 100
+      }
+    }
   },
   "results": [
     {
-      "id": "SEC-01",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "The code is vulnerable to SQL injection because it directly concatenates user input into the SQL query string.",
-          "suggestion": "Use a parameterized query, e.g. query('SELECT * FROM users WHERE id = $1', [req.params.id]), instead of concatenating the input into the SQL string."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "SEC-02",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "The code is vulnerable to command injection because it directly concatenates user input into the command string. An attacker could inject malicious commands.",
-          "suggestion": "Use a parameterized command or escape the input properly before using it in the command string."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "SEC-03",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "The API key 'sk_live_123456789abcdef' is hardcoded and exposed in the code. This can lead to security vulnerabilities if the code is shared or accessed by unauthorized individuals.",
-          "suggestion": "Remove the hardcoded API key and use an environment variable instead."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "SEC-04",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "The code directly uses the user-provided `name` parameter in the file path, which can be exploited for path traversal attacks if an attacker provides a malicious input like `../../etc/passwd`.",
-          "suggestion": "Validate and sanitize the `name` parameter to ensure it does not contain any path traversal sequences (e.g., `..`). Use a whitelist approach or a library that handles file paths safely."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "SEC-05",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "The code directly includes user-provided input (req.query.name) in the HTML response, which can lead to Cross-Site Scripting (XSS) if the input contains malicious scripts.",
-          "suggestion": "Sanitize or escape the user input before including it in the response. Use a library like DOMPurify to sanitize the input."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "SEC-06",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "The removal of the requireAdmin middleware exposes the /admin/users endpoint to unauthorized access, potentially allowing attackers to view user data without proper authentication.",
-          "suggestion": "Re-add the requireAdmin middleware to ensure that only authenticated users can access the /admin/users endpoint."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "SEC-07",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "MD5 is considered cryptographically broken and unsuitable for further use in security-sensitive applications. It can be trivially cracked, making stored passwords vulnerable to unauthorized access.",
-          "suggestion": "Revert the change and continue using bcrypt or another strong hashing algorithm like Argon2."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "SEC-08",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "medium",
-          "category": "correctness",
-          "comment": "Removing the hardcoded URL might lead to issues if the `url` variable is not properly validated or sanitized before being used in the fetch request. This could potentially allow for incorrect or malicious URLs to be processed.",
-          "suggestion": "Ensure that the `url` parameter is validated and sanitized to prevent potential security vulnerabilities."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "SEC-09",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "Logging the username and password in the console can expose sensitive information to attackers if the logs are not properly secured.",
-          "suggestion": "Remove or anonymize sensitive data from logs. Consider using a logging library that supports secure log management."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "SEC-10",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "The code writes uploaded files directly to the server without any validation or sanitization, which can lead to arbitrary file uploads and potential overwrites of existing files.",
-          "suggestion": "Validate the file type and size before saving it. Use a secure directory for storing uploaded files and ensure that filenames are sanitized to prevent path traversal attacks."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "COR-01",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "medium",
-          "category": "correctness",
-          "comment": "The loop condition should be less than the length of the array to avoid accessing an undefined element.",
-          "suggestion": "Change the loop condition to 'i < values.length'."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "COR-02",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "low",
-          "category": "correctness",
-          "comment": "The function does not perform any meaningful operation and always returns true, which might indicate a logical error or unnecessary code.",
-          "suggestion": "Review the purpose of this function. If it should return a boolean based on some condition, ensure that the logic is correctly implemented."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "COR-03",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "Directly assigning a role value bypasses any validation or authorization checks, potentially allowing unauthorized access.",
-          "suggestion": "Revert the change and ensure that role assignment is done through proper authentication and authorization mechanisms."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
       "id": "COR-04",
+      "scenario": "Division by zero is not handled",
       "expectedIssue": true,
       "expectedSeverity": "high",
+      "expectedCategory": "correctness",
       "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "medium",
-          "category": "correctness",
-          "comment": "Removing the null check for division by zero can lead to a runtime error if 'b' is zero.",
-          "suggestion": "Reintroduce the null check or handle the division by zero case appropriately."
-        }
+      "detectedSeverities": [
+        "high"
       ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "COR-05",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "medium",
-          "category": "performance",
-          "comment": "The removal of 'await' may cause the function to execute synchronously, potentially blocking other operations and leading to performance bottlenecks.",
-          "suggestion": "Ensure that the function is properly awaited or use a different approach to handle asynchronous operations."
-        }
+      "detectedCategories": [
+        "correctness"
       ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "COR-06",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "Logging errors to the console can expose sensitive information, which could be used for further attacks. Additionally, returning a success status code when an error occurs can mask issues from users.",
-          "suggestion": "Log errors securely (e.g., using a logging library that masks sensitive data) and return appropriate error responses."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "PERF-01",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "medium",
-          "category": "performance",
-          "comment": "Using a nested loop to find matches between two arrays can result in O(n*m) time complexity, which is inefficient for large datasets.",
-          "suggestion": "Consider using a more efficient algorithm or data structure, such as a Set for one of the arrays, to reduce the time complexity."
-        },
-        {
-          "severity": "medium",
-          "category": "maintainability",
-          "comment": "The nested loop approach is less readable and harder to understand than using the `filter` method.",
-          "suggestion": "Refactor the code to use a more straightforward and maintainable approach, such as using the `filter` method."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "PERF-02",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": false,
-      "detectedIssues": [],
-      "passed": false,
-      "status": "completed"
-    },
-    {
-      "id": "PERF-03",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
       "detectedIssues": [
         {
           "severity": "high",
           "category": "correctness",
-          "comment": "The variable 'total' is being recalculated in each iteration of the loop, which is unnecessary and incorrect. The original code was correct in calculating the total once.",
-          "suggestion": "Replace the loop with a single call to 'calculateTotal(items)' to fix the correctness issue."
-        },
-        {
-          "severity": "medium",
-          "category": "performance",
-          "comment": "The loop iterates over 'items' multiple times, which can be inefficient if 'items' is large. This could lead to performance degradation.",
-          "suggestion": "Optimize the code by calculating the total once and storing it in a variable."
+          "comment": "The old code checked for division by zero and returned null. This check has been removed, which can lead to incorrect behavior if b is zero.",
+          "suggestion": "Add a check for division by zero before performing the division operation."
         }
       ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
       "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "PERF-04",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "medium",
-          "category": "performance",
-          "comment": "Removing the LIMIT clause can result in fetching all product records from the database, which may cause performance degradation when the number of products is large.",
-          "suggestion": "Consider adding a limit to the query or implementing pagination to handle large datasets efficiently."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "MAIN-01",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "low",
-          "category": "correctness",
-          "comment": "The updateOrder function does not return any value, which might be unexpected if the caller expects a result from this function.",
-          "suggestion": "Consider adding a return statement to indicate the success or failure of the operation."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "MAIN-02",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "The code does not validate the format of the email address, which could lead to security vulnerabilities such as SQL injection or command injection if an attacker provides malicious input.",
-          "suggestion": "Use a library like `validator.js` to validate the email format before processing it."
-        },
-        {
-          "severity": "medium",
-          "category": "correctness",
-          "comment": "The code does not handle cases where the database operations fail, such as when creating or finding a user. This could lead to unexpected behavior if an error occurs.",
-          "suggestion": "Add error handling for database operations using try-catch blocks."
-        },
-        {
-          "severity": "low",
-          "category": "testing",
-          "comment": "The code does not include tests for the new functionality, such as checking that a user cannot be created with an existing email or that an error is returned if the email format is invalid.",
-          "suggestion": "Add unit tests to cover the new functionality and edge cases."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "MAIN-03",
-      "expectedIssue": true,
-      "expectedSeverity": "low",
-      "issueDetected": false,
-      "detectedIssues": [],
-      "passed": false,
-      "status": "completed"
-    },
-    {
-      "id": "TEST-01",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "correctness",
-          "comment": "The code directly uses user-provided data from req.body to create a product without validating or sanitizing it, which could lead to incorrect program behavior.",
-          "suggestion": "Add validation and sanitization for the input data using a library like Joi or Zod."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "TEST-02",
-      "expectedIssue": true,
-      "expectedSeverity": "high",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "Throwing an error with the credentials being invalid can leak information about the existence of the user, potentially aiding in brute-force attacks.",
-          "suggestion": "Return a generic error message instead of revealing whether the username or password is incorrect."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "TEST-03",
-      "expectedIssue": true,
-      "expectedSeverity": "medium",
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "medium",
-          "category": "correctness",
-          "comment": "If the percentage is greater than 100%, it will return the original price instead of applying a discount.",
-          "suggestion": "Consider handling cases where the percentage exceeds 100% by either clamping it to 100% or returning an error message."
-        }
-      ],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "CLEAN-01",
-      "expectedIssue": false,
-      "expectedSeverity": null,
-      "issueDetected": false,
-      "detectedIssues": [],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "CLEAN-02",
-      "expectedIssue": false,
-      "expectedSeverity": null,
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "high",
-          "category": "security",
-          "comment": "The code directly inserts the user-provided `id` into the SQL query string, which can lead to SQL injection if an attacker provides malicious input.",
-          "suggestion": "Use a parameterized query instead of concatenating the input into the SQL string. For example: `query('SELECT * FROM users WHERE id = $1', [req.query.id])`."
-        }
-      ],
-      "passed": false,
-      "status": "completed"
-    },
-    {
-      "id": "CLEAN-03",
-      "expectedIssue": false,
-      "expectedSeverity": null,
-      "issueDetected": false,
-      "detectedIssues": [],
-      "passed": true,
-      "status": "completed"
-    },
-    {
-      "id": "CLEAN-04",
-      "expectedIssue": false,
-      "expectedSeverity": null,
-      "issueDetected": true,
-      "detectedIssues": [
-        {
-          "severity": "low",
-          "category": "maintainability",
-          "comment": "The function contains multiple return statements, which can make it harder to understand and maintain.",
-          "suggestion": "Refactor the function to ensure only one return statement is used."
-        }
-      ],
-      "passed": false,
       "status": "completed"
     }
   ]
