@@ -1,40 +1,413 @@
 {
   "benchmark": "AI PR Review Assistant V1.2",
   "version": "1.0",
-  "generatedAt": "2026-08-25T12:04:48.911Z",
-  "selectedCases": [
-    "COR-04"
-  ],
+  "generatedAt": "2026-08-25T17:52:17.305Z",
+  "selectedCases": "all",
   "summary": {
-    "totalCases": 1,
-    "completedCases": 1,
-    "passedCases": 1,
-    "failedCases": 0,
+    "totalCases": 30,
+    "completedCases": 30,
+    "passedCases": 28,
+    "failedCases": 2,
     "skippedCases": 0,
     "errorCases": 0,
-    "truePositives": 1,
-    "falsePositives": 0,
-    "trueNegatives": 0,
-    "falseNegatives": 0,
-    "detectionAccuracy": 100,
-    "precision": 100,
-    "recall": 100,
-    "f1Score": 100,
-    "falsePositiveRate": 0,
-    "severityAccuracy": 100,
-    "categoryAccuracy": 100,
-    "severityCases": 1,
-    "categoryCases": 1,
+    "truePositives": 25,
+    "falsePositives": 1,
+    "trueNegatives": 3,
+    "falseNegatives": 1,
+    "detectionAccuracy": 93.33,
+    "precision": 96.15,
+    "recall": 96.15,
+    "f1Score": 96.15,
+    "falsePositiveRate": 25,
+    "severityAccuracy": 48,
+    "categoryAccuracy": 60,
+    "severityCases": 25,
+    "categoryCases": 25,
     "byCategory": {
-      "correctness": {
-        "total": 1,
-        "passed": 1,
+      "security": {
+        "total": 10,
+        "passed": 10,
         "failed": 0,
         "accuracy": 100
+      },
+      "correctness": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0,
+        "accuracy": 100
+      },
+      "performance": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "accuracy": 100
+      },
+      "maintainability": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "accuracy": 100
+      },
+      "testing": {
+        "total": 3,
+        "passed": 2,
+        "failed": 1,
+        "accuracy": 66.67
       }
     }
   },
   "results": [
+    {
+      "id": "SEC-01",
+      "scenario": "SQL injection through string concatenation",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "The use of direct string concatenation for the SQL query is vulnerable to SQL injection attacks. User input can be manipulated to execute arbitrary SQL code.",
+          "suggestion": "Use a parameterized query, e.g., `query('SELECT * FROM users WHERE id = $1', [req.params.id])`, instead of concatenating the input into the SQL string."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "SEC-02",
+      "scenario": "Command injection through user-controlled input",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "The use of `exec` with user input (`input`) is vulnerable to command injection. An attacker could inject malicious commands that would be executed by the system.",
+          "suggestion": "Use a safer method to execute shell commands, such as using `child_process.execFile` or `child_process.spawn`, and avoid passing user input directly to the command string."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "SEC-03",
+      "scenario": "Hardcoded API key or secret",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "The API key is hardcoded and exposed in the code, which can lead to security vulnerabilities if the key is compromised.",
+          "suggestion": "Use environment variables or a secure vault to store sensitive information like API keys."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "SEC-04",
+      "scenario": "Path traversal through user-controlled file path",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "The removal of the input validation step (name.replace(/../g, \"\")) allows attackers to traverse directories and potentially access sensitive files.",
+          "suggestion": "Reintroduce the input validation step to sanitize file names before reading them."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "SEC-05",
+      "scenario": "Cross-site scripting through unsanitized user input",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "The input 'name' is directly used in the response without any validation or sanitization, making it vulnerable to Cross-Site Scripting (XSS) attacks.",
+          "suggestion": "Sanitize the input 'name' using a library like DOMPurify before including it in the response."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "SEC-06",
+      "scenario": "Missing authentication or authorization on admin endpoint",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "The authorization check 'requireAdmin' has been removed, which could allow unauthorized access to user data.",
+          "suggestion": "Re-add the 'requireAdmin' middleware to ensure only authorized users can access this endpoint."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "SEC-07",
+      "scenario": "Weak password storage using an inappropriate hashing method",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "MD5 is a weak hash algorithm and should not be used for password storage. It can be easily cracked, leading to potential security breaches.",
+          "suggestion": "Revert the change and use bcrypt or another strong hashing algorithm like Argon2."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "SEC-08",
+      "scenario": "Server-side request forgery through user-controlled URL",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "medium"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "medium",
+          "category": "correctness",
+          "comment": "Hardcoding the URL limits flexibility and makes it difficult to change without modifying the codebase.",
+          "suggestion": "Use a configuration file or environment variable to store the URL."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "SEC-09",
+      "scenario": "Sensitive token or password written to application logs",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "Logging usernames and passwords in the console can lead to sensitive information exposure.",
+          "suggestion": "Remove or replace the logging of sensitive information with a more secure approach, such as logging only user IDs or generic messages."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "SEC-10",
+      "scenario": "Unsafe file upload without file type validation",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "security",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "The code directly writes the uploaded file to a directory without any validation or sanitization, which can lead to path traversal attacks.",
+          "suggestion": "Validate and sanitize the file name before writing it to the disk. Use a whitelist of allowed file types and extensions."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "COR-01",
+      "scenario": "Array loop uses an incorrect boundary condition",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "correctness",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "correctness",
+          "comment": "The loop condition has been changed from 'i < values.length' to 'i <= values.length', which may cause an out-of-bounds access if the array is empty.",
+          "suggestion": "Change the loop condition back to 'i < values.length'."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "COR-02",
+      "scenario": "Function returns before processing all required items",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "correctness",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "low"
+      ],
+      "detectedCategories": [
+        "maintainability"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "low",
+          "category": "maintainability",
+          "comment": "The function lacks any meaningful behavior and should be reviewed for its purpose.",
+          "suggestion": "Consider adding a comment explaining the reason for returning true or refactor the function to include appropriate logic."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "COR-03",
+      "scenario": "Incorrect comparison causes unexpected program behavior",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "correctness",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "security"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "security",
+          "comment": "The code now assigns the string 'admin' to the variable role instead of comparing it. This will always return true, potentially granting unauthorized access.",
+          "suggestion": "Change the assignment back to a comparison: return role === 'admin';"
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
     {
       "id": "COR-04",
       "scenario": "Division by zero is not handled",
@@ -52,13 +425,401 @@
         {
           "severity": "high",
           "category": "correctness",
-          "comment": "The old code checked for division by zero and returned null. This check has been removed, which can lead to incorrect behavior if b is zero.",
-          "suggestion": "Add a check for division by zero before performing the division operation."
+          "comment": "The old code checked for division by zero and returned null. This check has been removed, which can lead to incorrect behavior or a runtime error when dividing by zero.",
+          "suggestion": "Reintroduce the division by zero check and return null or throw an error if b is zero."
         }
       ],
       "detectionPassed": true,
       "severityMatched": true,
       "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "COR-05",
+      "scenario": "Missing await causes incorrect asynchronous behavior",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "correctness",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "correctness",
+          "comment": "The removed code contained a safety check for the existence of the user before returning it. This check has been deleted without being replaced in the current version.",
+          "suggestion": "Re-add the safety check to ensure that the user exists before returning it."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "COR-06",
+      "scenario": "Error is caught but the endpoint incorrectly reports success",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "correctness",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "correctness",
+          "comment": "The old code handled errors by returning a 500 status with an error message, while the new code only logs the error and returns a 201 status. This can lead to incorrect behavior if the client expects a failure response.",
+          "suggestion": "Restore the previous error handling logic to return a 500 status with an error message."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "PERF-01",
+      "scenario": "Nested loops create unnecessary O(n^2) complexity",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "performance",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "medium"
+      ],
+      "detectedCategories": [
+        "performance"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "medium",
+          "category": "performance",
+          "comment": "The nested loop approach has a time complexity of O(n*m), which can be slow for large arrays. Consider using a more efficient algorithm like set intersection or a hash map to improve performance.",
+          "suggestion": "Convert one of the arrays to a Set and use the `Set.prototype.has` method to check for matches, which will have an average time complexity of O(1) per lookup."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "PERF-02",
+      "scenario": "Database query executed repeatedly inside a loop",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "performance",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "medium"
+      ],
+      "detectedCategories": [
+        "performance"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "medium",
+          "category": "performance",
+          "comment": "Fetching users in a loop can lead to multiple database queries, which is inefficient and may cause performance issues with large datasets.",
+          "suggestion": "Consider using a single query with an IN clause to fetch all users at once."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": true,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "PERF-03",
+      "scenario": "Expensive computation is repeated unnecessarily",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "performance",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "correctness",
+          "comment": "The function calls itself recursively inside a for loop, which will result in an infinite loop if not properly handled.",
+          "suggestion": "Refactor the code to avoid recursive calls within a loop. Consider using an iterative approach or ensuring that the recursive call has a proper termination condition."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "PERF-04",
+      "scenario": "Large dataset is unnecessarily loaded into memory",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "performance",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "medium"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "medium",
+          "category": "correctness",
+          "comment": "Removing the LIMIT clause can lead to performance issues if there are many products in the database, as it will return all products instead of a subset.",
+          "suggestion": "Consider adding a limit back to the query or implement pagination to handle large datasets efficiently."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "MAIN-01",
+      "scenario": "Business logic is unnecessarily duplicated",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "maintainability",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "low"
+      ],
+      "detectedCategories": [
+        "testing"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "low",
+          "category": "testing",
+          "comment": "The current implementation of `updateOrder` does not have a return statement, which may lead to unexpected behavior when the function is called. The absence of a return value can make it difficult to determine if the order update was successful or not.",
+          "suggestion": "Add a return statement to indicate the success or failure of the order update operation."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "MAIN-02",
+      "scenario": "Large function mixes validation, database, business and response logic",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "maintainability",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "correctness",
+          "comment": "If a user tries to register with an email that already exists, the current code will return a 409 status without any additional information or handling.",
+          "suggestion": "Add appropriate error handling for the case where the email is already registered."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "MAIN-03",
+      "scenario": "Cryptic variable and function names reduce readability",
+      "expectedIssue": true,
+      "expectedSeverity": "low",
+      "expectedCategory": "maintainability",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "medium"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "medium",
+          "category": "correctness",
+          "comment": "The function now returns `u.n` instead of `user.name`, which could lead to incorrect behavior if `n` is not a valid property on the user object.",
+          "suggestion": "Ensure that `n` is a valid and expected property on the user object before returning it. Consider adding a check or default value."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "TEST-01",
+      "scenario": "New API endpoint is added without tests",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "testing",
+      "issueDetected": false,
+      "detectedSeverities": [],
+      "detectedCategories": [],
+      "detectedIssues": [],
+      "detectionPassed": false,
+      "severityMatched": false,
+      "categoryMatched": false,
+      "passed": false,
+      "status": "completed"
+    },
+    {
+      "id": "TEST-02",
+      "scenario": "Authentication logic changes without tests for failure cases",
+      "expectedIssue": true,
+      "expectedSeverity": "high",
+      "expectedCategory": "testing",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "correctness",
+          "comment": "If authentication fails, an error is thrown without any additional context or handling. This can lead to unexpected behavior and potential security issues if the error message is exposed.",
+          "suggestion": "Consider returning a more specific error message or logging the failure for debugging purposes."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": true,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "TEST-03",
+      "scenario": "New edge-case behavior is introduced without a corresponding test",
+      "expectedIssue": true,
+      "expectedSeverity": "medium",
+      "expectedCategory": "testing",
+      "issueDetected": true,
+      "detectedSeverities": [
+        "high"
+      ],
+      "detectedCategories": [
+        "correctness"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "high",
+          "category": "correctness",
+          "comment": "A discount percentage greater than 100% can result in a price lower than the original price, which is likely not intended behavior.",
+          "suggestion": "Ensure that the discount percentage is within a valid range (e.g., between 0 and 1)."
+        }
+      ],
+      "detectionPassed": true,
+      "severityMatched": false,
+      "categoryMatched": false,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "CLEAN-01",
+      "scenario": "Variable is renamed without changing behavior",
+      "expectedIssue": false,
+      "expectedSeverity": null,
+      "expectedCategory": null,
+      "issueDetected": true,
+      "detectedSeverities": [
+        "low"
+      ],
+      "detectedCategories": [
+        "maintainability"
+      ],
+      "detectedIssues": [
+        {
+          "severity": "low",
+          "category": "maintainability",
+          "comment": "The variable name `name` has been changed to `username`, which might be less intuitive for other developers reading the code.",
+          "suggestion": "Consider renaming the variable back to `name` if it still refers to a user's name."
+        }
+      ],
+      "detectionPassed": false,
+      "severityMatched": null,
+      "categoryMatched": null,
+      "passed": false,
+      "status": "completed"
+    },
+    {
+      "id": "CLEAN-02",
+      "scenario": "SQL query is changed to use parameterized input",
+      "expectedIssue": false,
+      "expectedSeverity": null,
+      "expectedCategory": null,
+      "issueDetected": false,
+      "detectedSeverities": [],
+      "detectedCategories": [],
+      "detectedIssues": [],
+      "detectionPassed": true,
+      "severityMatched": null,
+      "categoryMatched": null,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "CLEAN-03",
+      "scenario": "Unit tests are added for existing functionality",
+      "expectedIssue": false,
+      "expectedSeverity": null,
+      "expectedCategory": null,
+      "issueDetected": false,
+      "detectedSeverities": [],
+      "detectedCategories": [],
+      "detectedIssues": [],
+      "detectionPassed": true,
+      "severityMatched": null,
+      "categoryMatched": null,
+      "passed": true,
+      "status": "completed"
+    },
+    {
+      "id": "CLEAN-04",
+      "scenario": "Repeated magic value is replaced with a named constant",
+      "expectedIssue": false,
+      "expectedSeverity": null,
+      "expectedCategory": null,
+      "issueDetected": false,
+      "detectedSeverities": [],
+      "detectedCategories": [],
+      "detectedIssues": [],
+      "detectionPassed": true,
+      "severityMatched": null,
+      "categoryMatched": null,
       "passed": true,
       "status": "completed"
     }
